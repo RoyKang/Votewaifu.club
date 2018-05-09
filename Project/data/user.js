@@ -42,6 +42,7 @@ async function getToken(email) {
 
 async function register(username,password,email) {
     let passwordHashed = await encrypt(password);
+    console.log([username,password,email])
     var user = await User.create({
         name: username,
         gender: false,

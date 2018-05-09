@@ -1,21 +1,28 @@
 <template>
-    <div style="width:70%;margin-left: auto;margin-right: auto;" v-loading=loading  element-loading-spinner="el-icon-loading"  element-loading-background="rgba(0, 0, 0, 0.8)" element-loading-text="拼命加载中">
-        <el-row type="flex" justify="center" style="flex-wrap: wrap;">
-            <!--display:inline-block-->
-            <el-col :span="3" v-for="animate in animationData"  :offset="1" >
-                <el-card :body-style="{ padding: '0px' }" shadow="always">
+    <div style="width:80%;margin-left: auto;margin-right: auto;" v-loading=loading  element-loading-spinner="el-icon-loading"  element-loading-background="rgba(0, 0, 0, 0.8)" element-loading-text="拼命加载中">
+        <el-collapse v-model="activeNames" >
+             <el-collapse-item v-for="(animationDayGroup,key) in animationData" :key="key"  :title="dayName[key]"  
+             :name= "calName[key]" >
+                <el-row type="flex" justify="center" style="flex-wrap: wrap;vertical-align:bottom;">
+
+                 <el-col :span="3" v-for="animate in animationDayGroup" :key="animate.id" :offset="1" style="margin:23px;position:relative">
+                    <el-card :body-style="{ padding: '0px' }" shadow="always" style="height:100% ">
                     <img src="./assets/123.jpg" class="image">
-                    <div style="padding: 14px;">
-                        <span>{{  animate.titleTranslate['zh-Hans'] }}</span>
-                        <div class="bottom clearfix">
-                            <time class="time">{{  }}</time>
-                            <el-button type="text" class="button">操作按钮</el-button>
-                        </div>
+                    <div style="padding: 8px;" >
+                        <span>{{animate.titleTranslate}}</span>
+                        <span v-if="animate.language==='zh-Hans'">国语</span>
                     </div>
+                    <div class="bottom clearfix" style="position:absolute;bottom:0;right:5px">
+                            <i  class="el-icon-star-off" ></i>
+                        </div>
+                     
                 </el-card>
             </el-col>
         </el-row>
+        </el-collapse-item>
+        </el-collapse>
     </div>
+    
 </template>
 
 <script>
@@ -24,7 +31,10 @@
         data() {
             return {
                 animationData :[],
-                loading: false
+                loading: false,
+                activeNames:['1','2','3','4','5','6','7'],
+                calName:['1','2','3','4','5','6','7'],
+                dayName:['星期一','星期二','星期三','星期四','星期五','星期六','星期日']
             }
         },
         created () {
@@ -35,14 +45,28 @@
             '$route': 'fetchData'
         },
         methods:{
-            async fetchData(){
+            async fetchData() {
                 this.loading = true;
-                let data = await axios.get('/api/mainPage',{
+                let dataReceived = await axios.get('/api/mainPage',{
                 });
                 this.loading = false;
-                console.log(data)
-                this.animationData = data.data.data;
+                //console.log(data)
+                console.log(this)
+                this.animationData = this.getdataByDay(dataReceived.data)
+                //this.animationData = data.data;
+            },
+            getdataByDay (animationData) {
+                var dataByDay = Array.apply(undefined,{length:7}).map(()=>{return []});
+                console.log(animationData)
+                for (let animation of animationData) {
+                    if (animation.day) {
+                        dataByDay[animation.day].push(animation)
+                    }
+                }
+                console.log(dataByDay);
+                return dataByDay;
             }
+
         }
     }
 
@@ -50,6 +74,6 @@
 
 <style scoped>
     body {
-        margin: 0;
+        /* margin: 0; */
     }
 </style>

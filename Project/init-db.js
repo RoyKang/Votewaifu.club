@@ -1,5 +1,5 @@
 const model = require('./model.js');
 
-model.sync;
+model.sync();
 
 console.log('init db ok.');

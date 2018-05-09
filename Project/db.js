@@ -68,7 +68,8 @@ function defineModel(name,attributes) {
                     obj.version++;
                 }
             }
-        }
+        },
+        charset:'utf8'
     });
 };
 

@@ -1,17 +1,10 @@
 <template>
     <el-container>
         <el-header>
-            <!--<el-button type="text" id="mainBtn">Votewaifu.club</el-button>-->
-
-            <!--<el-button type="text" id="loginBtn" style="float: right">用户登录</el-button>-->
-
-            <!--<el-button type="text" id="voteBtn" style="float: right">发起投票</el-button>  -->
-            <!--class="el-menu"-->
             <el-menu :default-active="activeIndex"  mode="horizontal" @select="handleSelect">
                 <el-menu-item index="1" @click="index" >Votewaifu.club</el-menu-item>
-                <el-menu-item index="3" style="float: right">发起投票</el-menu-item>
-
-                <el-menu-item index="1" @click="login" style="float: right">用户登录</el-menu-item>
+                <el-menu-item index="2" @click="createVote" style="float: right">发起投票</el-menu-item>
+                <el-menu-item index="3" @click="login" style="float: right">用户登录</el-menu-item>
 
             </el-menu>
         </el-header>
@@ -35,10 +28,13 @@ export default {
     },
     methods: {
         login () {
-            this.$router.push({name:'login'})
+            this.$router.push({name:'login'});
         },
         index () {
-            this.$router.push({name:'mainPage'})
+            this.$router.push({name:'mainPage'});
+        },
+        createVote () {
+            this.$router.push({name:'votePage'});
         },
         handleSelect(key, keyPath) {
             console.log(key, keyPath);

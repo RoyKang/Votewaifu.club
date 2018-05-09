@@ -2,15 +2,17 @@ import Vue from 'vue'
 import store from './store.js'
 import Router from 'vue-router'
 import VueRouter from "vue-router";
-import loginCom from './Login.vue';
+import loginCom from './loginPage.vue';
 import mainCom from './mainPage.vue';
+import voteCom from './votePage.vue'
 
 Vue.use(Router);
 
 const routes = [
 
     { name:'login',path:'/login',component:loginCom},
-    { name:'mainPage',path:'/',component:mainCom}
+    { name:'mainPage',path:'/',component:mainCom},
+    { name:'votePage',path:'/createVote',component:voteCom}
 ]
 const router = new VueRouter({
     mode: 'history',

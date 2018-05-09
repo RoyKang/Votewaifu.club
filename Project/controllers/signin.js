@@ -7,7 +7,7 @@ function getParams(ctx) {
         username = ctx.request.body.username || ''
         password = ctx.request.body.password || ''
         email = ctx.request.body.email || '';
-    console.log(username,password);
+    console.log(ctx.request.body);
     return [username,password,email];
     }
 

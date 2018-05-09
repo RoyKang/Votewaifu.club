@@ -8,4 +8,6 @@ module.exports = db.defineModel('vote', {
     passwd: db.STRING(100),
     name: db.STRING(100),
     gender: db.BOOLEAN
+},{
+    charset: 'utf8',
 });

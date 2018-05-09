@@ -1,9 +1,9 @@
-const db = require('../db');
+const db = require('../db');    
 
 module.exports = db.defineModel('animation', {
     title: {
         type: db.STRING(100),
-        unique: true
+        
     },
     id: {
         type:db.STRING(100),
@@ -30,7 +30,13 @@ module.exports = db.defineModel('animation', {
     },
     officialSite: {
         type:db.STRING(100),
+    },
+    day: {
+        type:db.STRING(100),
     }
 
 
+
+},{
+    charset: 'utf8',
 });

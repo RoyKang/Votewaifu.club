@@ -20,8 +20,8 @@
                         <el-form-item label="邮箱" prop="email">
                             <el-input v-model="userRegister.email"></el-input>
                         </el-form-item>
-                        <el-form-item label="用户名" prop="name">
-                            <el-input v-model="userRegister.name"></el-input>
+                        <el-form-item label="用户名" prop="username">
+                            <el-input v-model="userRegister.username"></el-input>
                         </el-form-item>
                         <el-form-item label="密码" prop="password">
                             <el-input v-model="userRegister.password" type="password"></el-input>
