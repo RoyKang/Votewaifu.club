@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from './store.js'
 import router from './router.js'
-
+import vue from './main.js'
 //设置全局axios默认值
 axios.defaults.timeout = 5000; //5000的超时验证
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
@@ -17,8 +17,9 @@ instance.interceptors.request.use(
     config => {
         //每次发送请求之前检测都vuex存有token,那么都要放在请求头发送给服务器
         if(store.state.token){
-            config.headers.Authorization = `token ${store.state.token}`;
+            config.headers.Authorization = `Bearer ${store.state.token}`;
         }
+        console.log(config)
         return config;
     },
     err => {
@@ -35,10 +36,12 @@ instance.interceptors.response.use(
             switch(error.response.status){
                 case 401:
                     store.dispatch('UserLogout'); //可能是token过期，清除它
+                    vue.$message('未登录或者登陆已过期');
                     router.replace({ //跳转到登录页面
                         path: 'login',
                         query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
                     });
+
             }
         }
         return Promise.reject(error.response);

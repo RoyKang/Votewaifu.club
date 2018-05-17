@@ -106,10 +106,11 @@
             });
                 if (response.status===200) {
                     let token = response.data;
+                    this.$store.commit('setToken',token);
+                    this.$message('登陆成功');
+                    this.$router.push({name:'mainPage'})
+                    console.log(this);
 
-                    this.$store.commit('setToken',token)
-
-                    console.log(this.$store.state.token)
                 }
                 else{
 

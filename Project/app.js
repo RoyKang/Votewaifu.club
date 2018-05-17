@@ -10,27 +10,14 @@ const controller = require('./controller');
 
 const staticFiles = require('./static-files');
 
-
-
-
-const verifyToken = require('./token');
-
 const jwtKoa = require('koa-jwt')
 
-
-app.use(jwtKoa('0068').unless({
-    path: [/\/register/, /\/login/,/\/index/,/\mainPage/]
+const secret = '0068'
+app.use(jwtKoa({
+    secret,
+}).unless({
+    path: [/\/register/, /\/login/,/\/index/,/\/mainPage/]
 }));
-
-
-
-
-
-
-
-
-
-
 
 app.use(bodyParser());
 

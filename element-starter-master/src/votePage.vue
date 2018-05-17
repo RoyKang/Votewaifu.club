@@ -113,15 +113,12 @@
                     this.$message('请输入完整信息');
                     return false
                 }
+                console.log(this.createVote)
                 let response = await axios.post('/api/createVote',{
-
+                    data:this.createVote
                 });
                 if (response.status===200) {
-                    let token = response.data;
-
-                    this.$store.commit('setToken',token)
-
-                    console.log(this.$store.state.token)
+                   console.log(response)
                 }
                 else{
 

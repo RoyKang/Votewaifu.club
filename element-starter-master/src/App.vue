@@ -4,7 +4,7 @@
             <el-menu :default-active="activeIndex"  mode="horizontal" @select="handleSelect">
                 <el-menu-item index="1" @click="index" >Votewaifu.club</el-menu-item>
                 <el-menu-item index="2" @click="createVote" style="float: right">发起投票</el-menu-item>
-                <el-menu-item index="3" @click="login" style="float: right">用户登录</el-menu-item>
+                <el-menu-item index="3" @click="login" style="float: right" v-if="!this.$store.state.token" >用户登录</el-menu-item>
 
             </el-menu>
         </el-header>
@@ -38,7 +38,7 @@ export default {
         },
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
-        }
+        },
 
   }
 }

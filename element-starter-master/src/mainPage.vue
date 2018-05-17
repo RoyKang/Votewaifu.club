@@ -42,7 +42,7 @@
         },
         watch: {
             // 如果路由有变化，会再次执行该方法
-            '$route': 'fetchData'
+            //'$route': 'fetchData'
         },
         methods:{
             async fetchData() {
@@ -50,10 +50,9 @@
                 let dataReceived = await axios.get('/api/mainPage',{
                 });
                 this.loading = false;
-                //console.log(data)
                 console.log(this)
                 this.animationData = this.getdataByDay(dataReceived.data)
-                //this.animationData = data.data;
+
             },
             getdataByDay (animationData) {
                 var dataByDay = Array.apply(undefined,{length:7}).map(()=>{return []});

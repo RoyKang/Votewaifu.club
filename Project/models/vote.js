@@ -1,13 +1,12 @@
 const db = require('../db');
 
 module.exports = db.defineModel('vote', {
-    email: {
+    name: {
         type: db.STRING(100),
         unique: true
     },
-    passwd: db.STRING(100),
-    name: db.STRING(100),
-    gender: db.BOOLEAN
+    type: db.STRING(100),
+    animationData:JSON
 },{
     charset: 'utf8',
 });
