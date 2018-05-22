@@ -29,7 +29,7 @@ router.beforeEach((to, from, next) => {
         }else {
             next({
                 path: '/login',
-                query: { redirect: to.fullPath },
+                query: {redirect: to.fullPath},
             });
             vue.$message('请先登录');
         }

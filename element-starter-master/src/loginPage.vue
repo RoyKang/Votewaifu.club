@@ -76,8 +76,7 @@
         },
         watch: {
             // 如果路由有变化，会再次执行该方法
-            //'$route':console.log(123)
-                //this.$router.push({name:'login'})
+            //this.$router.push({name:'login'})
         },
 
         methods:{
@@ -100,17 +99,14 @@
                     return false
                 }
                 let response = await axios.post('/api/login',{
-                    email:this.userLogin.email,
-                    username:this.userLogin.username,
-                    password:this.userLogin.password,
+                    data:this.userLogin,
             });
                 if (response.status===200) {
                     let token = response.data;
                     this.$store.commit('setToken',token);
                     this.$message('登陆成功');
-                    this.$router.push({name:'mainPage'})
-                    console.log(this);
-
+                    let url =decodeURIComponent(this.$route.query.redirect);
+                    this.$router.push({path: url});
                 }
                 else{
 
@@ -124,11 +120,10 @@
                     return false
                 }
                 let response = await axios.post('/api/register',{
-                    username:this.userRegister.username,
-                    password:this.userRegister.password,
-                    email:this.userRegister.email,
+                    data:this.userRegister,
                 });
-                console.log(response)
+                this.$message('注册成功');
+                this.$router.push({name:'mainPage'});
             },
 
         }

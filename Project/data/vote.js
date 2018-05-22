@@ -27,7 +27,7 @@ async function createVote(info) {
 
 module.exports = {
     createVote : createVote,
-    login : login
+    
 
 }
 
