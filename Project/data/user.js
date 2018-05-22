@@ -19,10 +19,11 @@ async function login(username,password,email) {
         }
     });
     var isSuccess = await encrypt(password) === userInfo.passwd;
-    console.log('selected: ' + JSON.stringify(userInfo));
-    console.log(isSuccess)
+    //console.log('selected: ' + JSON.stringify(userInfo));
     if (isSuccess){
         var token = await getToken(email)
+    }   else {
+        var token = false
     }
     
     return token;
@@ -33,7 +34,7 @@ async function getToken(email) {
         key:email
     };
     let token = await jwt.sign(key,secret,{expiresIn:'1h'});
-    console.log(token)
+
     return token
 }
 
@@ -42,15 +43,24 @@ async function getToken(email) {
 
 async function register(username,password,email) {
     let passwordHashed = await encrypt(password);
-    console.log([username,password,email])
-    var user = await User.create({
-        name: username,
-        gender: false,
-        email: email | null,
-        passwd: passwordHashed
+    console.log([username,password,email]);
+    var registered =await User.findOne ({
+        where: {
+            email:email
+        }
     });
-    console.log('created: ' + JSON.stringify(user));
-    return true;
+    if (!registered) {
+        var user = await User.create({
+            name: username,
+            gender: false,
+            email: email,
+            passwd: passwordHashed
+        });
+        console.log('created: ' + JSON.stringify(user));
+        return true;
+        } else {
+        return false;
+    }
 }
 
 

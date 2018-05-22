@@ -1,7 +1,6 @@
 <template>
     <el-row type="flex" justify="center">
         <el-col :span="16">
-
                     <el-form :model="createVote" :rules="rulesVote" ref="vote-form" status-icon label-width="110px" >
                             <p>创建投票</p>
                         <el-form-item label="投票名称" prop="voteName">
@@ -32,7 +31,6 @@
                                 </el-date-picker>
                             </div>
                         </el-form-item>
-
                         <el-form-item>
                             <el-button type="primary" icon="el-icon-upload" @click="submitVote('vote-form')" style="margin-left:34%;width: 32%">创建投票</el-button>
                         </el-form-item>

@@ -101,15 +101,15 @@
                 let response = await axios.post('/api/login',{
                     data:this.userLogin,
             });
-                if (response.status===200) {
+                if (response.data) {
                     let token = response.data;
                     this.$store.commit('setToken',token);
                     this.$message('登陆成功');
-                    let url =decodeURIComponent(this.$route.query.redirect);
+                    let url = decodeURIComponent(this.$route.query.redirect || '/') ;
                     this.$router.push({path: url});
                 }
                 else{
-
+                    this.$message('密码错误');
                 }
 
             },
@@ -122,8 +122,13 @@
                 let response = await axios.post('/api/register',{
                     data:this.userRegister,
                 });
-                this.$message('注册成功');
-                this.$router.push({name:'mainPage'});
+                if (response.data === true) {
+                    this.$message('注册成功');
+                    this.$router.push({name:'mainPage'});
+                } else {
+                    this.$message('邮箱已经被注册！');
+                }
+
             },
 
         }
