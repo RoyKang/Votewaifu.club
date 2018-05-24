@@ -1,29 +1,16 @@
-const model = require('../model');
-
-let Vote = model.vote;
+let redis = require('../redis').redis
 
 async function getSelectedAnimationData(info) {
-        
+
 }
 async function createVote(info) {
-    var user = await Vote.create({
-        name: username,
-        gender: false,
-        email: email | null,
-        passwd: passwordHashed
-    });
-    console.log('created: ' + JSON.stringify(user));
-    return true;
+    console.log(redis)
+    var set = await redis.setAsync('12311','111111');
+    console.log(set);
+    var get = await redis.getAsync('12311');
+    console.log(get)
+
 }
-
-
-
-
-
-
-
-
-
 
 module.exports = {
     createVote : createVote,
