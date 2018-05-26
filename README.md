@@ -1,5 +1,5 @@
-# code
-Votewaifu.club
+# Votewaifu.club
+
 
 
 一个使用KOA2和Vue的SPA投票网站代码~
