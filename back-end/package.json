@@ -17,6 +17,7 @@
         "url": "https://github.com/michaelliao/learn-javascript.git"
     },
     "dependencies": {
+        "hoek":"4.2.1",
         "babel-eslint": "^8.2.2",
         "bangumi-data": "^0.2.18",
         "element-ui": "^2.3.4",
