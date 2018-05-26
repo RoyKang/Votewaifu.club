@@ -1,3 +1,20 @@
+
+const jwt = require('jsonwebtoken');
+
+const config = require('./config');
+
+async function getToken(email) {
+    let secret = config.tokenSecret ;
+    let key = {
+        key:email
+    };
+    let token = await jwt.sign(key,secret,{expiresIn:'1h'});
+
+    return token
+}
+
+module.exports = getToken
+
 // const jwt = require('jsonwebtoken');
 //
 //

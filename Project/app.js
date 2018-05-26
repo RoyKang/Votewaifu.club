@@ -10,14 +10,20 @@ const controller = require('./controller');
 
 const staticFiles = require('./static-files');
 
+const config = require('./config.js');
+
 const jwtKoa = require('koa-jwt');
 
-const secret = '0068'
+const secret = config.tokenSecret;
+
+const path = config.noAuthorizedpath;
+
+const port = config.serverPort;
 
 app.use(jwtKoa({
     secret,
 }).unless({
-    path: [/\/register/, /\/login/,/\/index/,/\/mainPage/]
+    path: path
 }));
 
 app.use(bodyParser());
@@ -27,4 +33,4 @@ app.use(controller());
 app.use(staticFiles('/static/', __dirname + '/static'));
 
 
-app.listen(3000);
+app.listen(port);

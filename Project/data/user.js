@@ -1,9 +1,10 @@
 const model = require('../model');
+
 const crypto = require('crypto');
 
-const jwt = require('jsonwebtoken')
 let User = model.user;
 
+let getToken = require('../token.js');
 
 async function encrypt(password) {
     let hash = await crypto.createHash('sha1').update(password).digest('hex');
@@ -25,15 +26,6 @@ async function login(username,password,email) {
     }
     
     return token;
-}
-async function getToken(email) {
-    let secret = '0068';
-    let key = {
-        key:email
-    };
-    let token = await jwt.sign(key,secret,{expiresIn:'1h'});
-
-    return token
 }
 
 
