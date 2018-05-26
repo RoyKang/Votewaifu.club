@@ -1,14 +1,23 @@
-let redis = require('../redis').redis
+let redis = require('../redis')
 
-async function getSelectedAnimationData(info) {
+async function getSelectedData(info) {
+    console.log(info);
+
+
 
 }
+
+function f() {
+    
+}
 async function createVote(info) {
-    console.log(redis)
-    var set = await redis.setAsync('12311','111111');
-    console.log(set);
-    var get = await redis.getAsync('12311');
-    console.log(get)
+    var selectedData = getSelectedData(info);
+    console.log(selectedData)
+
+
+
+    var set = await redis.setAsync('123111','1qwe1');
+    var get = await redis.getAsync('123111');
 
 }
 

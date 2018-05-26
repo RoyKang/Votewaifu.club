@@ -5,8 +5,6 @@ const jwt = require('jsonwebtoken')
 let User = model.user;
 
 
-//let jwtKoa = require('koa-jwt');
-
 async function encrypt(password) {
     let hash = await crypto.createHash('sha1').update(password).digest('hex');
     return hash

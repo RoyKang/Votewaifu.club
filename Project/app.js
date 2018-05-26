@@ -10,9 +10,10 @@ const controller = require('./controller');
 
 const staticFiles = require('./static-files');
 
-const jwtKoa = require('koa-jwt')
+const jwtKoa = require('koa-jwt');
 
 const secret = '0068'
+
 app.use(jwtKoa({
     secret,
 }).unless({

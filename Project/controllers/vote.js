@@ -11,12 +11,11 @@ function getParams(ctx) {
 module.exports = {
     'POST /createVote': async (ctx, next) => {
         let info = getParams(ctx);
-        let result = await getData.createVote(info);
 
-        if (result) {
-            ctx.response.type = 'json';
-            ctx.response.body = result;
-        }
+        let result = await getData.createVote(info);
+        ctx.response.type = 'json';
+        ctx.response.body = result;
+
     },
     'POST /voteList': async (ctx, next) => {
         console.log(ctx)
