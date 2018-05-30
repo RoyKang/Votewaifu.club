@@ -1,24 +1,38 @@
-let redis = require('../redis')
+let redis = require('../redis');
+var model = require('../model.js');
+var animation = model.animation;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 async function getSelectedData(info) {
-    console.log(info);
-
-
-
+    let [startDate,endDate] = info.startDate;
+    let animationSelected = await animation.findAll({
+        attributes: ['id', 'titleTranslate'],
+        where: {
+            begin:{
+                [Op.between]: [startDate, endDate],
+            }
+        }
+    });
+    let data = [];
+    for (let animation of animationSelected) {
+        data.push(animation.id);
+        data.push(animation.titleTranslate);
+    }
+    return data;
 }
 
 function f() {
     
 }
 async function createVote(info) {
-    var selectedData = getSelectedData(info);
-    console.log(selectedData)
-
-
-
-    var set = await redis.setAsync('123111','1qwe1');
-    var get = await redis.getAsync('123111');
-
+    let selectedData = await getSelectedData(info);
+    let voteNo = await redis.incrAsync('voteNo');
+    let voteKey = 'vote:' + voteNo;
+    let votedKey = 'voted' + voteNo;
+    let voteCreated = await redis.hmsetAsync(voteKey,selectedData);
+    //let data = await redis.hgetallAsync(voteKey);
+    let votedUser = await redis.addAsync(votedKey,userName)
 }
 
 module.exports = {

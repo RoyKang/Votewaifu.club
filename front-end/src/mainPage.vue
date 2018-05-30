@@ -6,20 +6,10 @@
                 <el-row type="flex" justify="center" style="flex-wrap: wrap;vertical-align:bottom;">
 
                  <el-col :span="3" v-for="animate in animationDayGroup" :key="animate.id" :offset="1" style="margin:23px;position:relative">
-                    <el-card :body-style="{ padding: '0px' }" shadow="always" style="height:100% ">
-                    <img src="./assets/123.jpg" class="image">
-                    <div style="padding: 8px;" >
-                        <span>{{animate.titleTranslate}}</span>
-                        <span v-if="animate.language==='zh-Hans'">国语</span>
-                    </div>
-                    <div class="bottom clearfix" style="position:absolute;bottom:0;right:5px">
-                            <i  class="el-icon-star-off" ></i>
-                        </div>
-                     
-                </el-card>
-            </el-col>
-        </el-row>
-        </el-collapse-item>
+                     <cardComponent  :info="animate" ></cardComponent>
+                </el-col>
+                </el-row>
+            </el-collapse-item>
         </el-collapse>
     </div>
     
@@ -27,6 +17,7 @@
 
 <script>
     import axios from './axios.js'
+    import cardComponent from './card.vue'
     export default {
         data() {
             return {
@@ -43,6 +34,9 @@
         watch: {
             // 如果路由有变化，会再次执行该方法
             //'$route': 'fetchData'
+        },
+        components: {
+          cardComponent
         },
         methods:{
             async fetchData() {
