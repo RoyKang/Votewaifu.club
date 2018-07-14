@@ -38,7 +38,7 @@ async function initializeData (anima){
         console.log(bangumi)
         let a=getTitleTranslate(bangumi);
         console.log(a);
-        var animate = await animation.create({
+        let animate = await animation.create({
             title: bangumi.title,
             titleTranslate:getTitleTranslate(bangumi),
             id: index,
@@ -70,8 +70,9 @@ function getTitleTranslate(bangumi) {
 }
 function getSites(sites) {
     if(sites){
+        let sitesString = '';
         for (let site in sites) {
-            var sitesString = ""+site
+             sitesString = ""+site;
         }
 
         return sitesString;

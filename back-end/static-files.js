@@ -1,8 +1,8 @@
-var fs = require('fs');
-var mime = require('mime');
-var path = require('path');
+let fs = require('fs');
+let mime = require('mime');
+let path = require('path');
 
-var readFile = function (fileName){
+let readFile = function (fileName){
     return new Promise(function (resolve, reject){
         fs.readFile(fileName, function(error, data){
             if (error) return reject(error);
@@ -11,7 +11,7 @@ var readFile = function (fileName){
     });
 };
 
-var exists = function (fileName){
+let exists = function (fileName){
     return new Promise(function (resolve, reject){
         fs.access(fileName, fs.constants.R_OK, function(error){
             if (error) return reject(error);

@@ -32,5 +32,4 @@ app.use(controller());
 
 app.use(staticFiles('/static/', __dirname + '/static'));
 
-
 app.listen(port);

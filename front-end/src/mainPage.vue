@@ -49,7 +49,7 @@
 
             },
             getdataByDay (animationData) {
-                var dataByDay = Array.apply(undefined,{length:7}).map(()=>{return []});
+                let dataByDay = Array.apply(undefined,{length:7}).map(()=>{return []});
                 console.log(animationData)
                 for (let animation of animationData) {
                     if (animation.day) {

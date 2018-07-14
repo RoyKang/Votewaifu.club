@@ -1,5 +1,5 @@
-var model = require('../model.js');
-var animation = model.animation;
+const model = require('../model.js');
+const animation = model.animation;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
